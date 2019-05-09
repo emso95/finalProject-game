@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B0A38C3F227D162D00DA9274 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A38C3E227D162D00DA9274 /* AppDelegate.swift */; };
-		B0A38C41227D162D00DA9274 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B0A38C40227D162D00DA9274 /* art.scnassets */; };
 		B0A38C43227D162D00DA9274 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A38C42227D162D00DA9274 /* GameViewController.swift */; };
 		B0A38C46227D162D00DA9274 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A38C44227D162D00DA9274 /* Main.storyboard */; };
 		B0A38C48227D162F00DA9274 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0A38C47227D162F00DA9274 /* Assets.xcassets */; };
 		B0A38C4B227D162F00DA9274 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A38C49227D162F00DA9274 /* LaunchScreen.storyboard */; };
 		B0A38C56227D162F00DA9274 /* voltagePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A38C55227D162F00DA9274 /* voltagePuzzleTests.swift */; };
 		B0A38C61227D162F00DA9274 /* voltagePuzzleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A38C60227D162F00DA9274 /* voltagePuzzleUITests.swift */; };
+		B0E01080228392B200C8935D /* GeometryFighter.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B0E0107F228392B200C8935D /* GeometryFighter.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		B0A38C3B227D162D00DA9274 /* voltagePuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voltagePuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A38C3E227D162D00DA9274 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B0A38C40227D162D00DA9274 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		B0A38C42227D162D00DA9274 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B0A38C45227D162D00DA9274 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B0A38C47227D162F00DA9274 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		B0A38C5C227D162F00DA9274 /* voltagePuzzleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = voltagePuzzleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A38C60227D162F00DA9274 /* voltagePuzzleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voltagePuzzleUITests.swift; sourceTree = "<group>"; };
 		B0A38C62227D162F00DA9274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0E0107F228392B200C8935D /* GeometryFighter.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = GeometryFighter.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +99,8 @@
 		B0A38C3D227D162D00DA9274 /* voltagePuzzle */ = {
 			isa = PBXGroup;
 			children = (
+				B0E0107F228392B200C8935D /* GeometryFighter.scnassets */,
 				B0A38C3E227D162D00DA9274 /* AppDelegate.swift */,
-				B0A38C40227D162D00DA9274 /* art.scnassets */,
 				B0A38C42227D162D00DA9274 /* GameViewController.swift */,
 				B0A38C44227D162D00DA9274 /* Main.storyboard */,
 				B0A38C47227D162F00DA9274 /* Assets.xcassets */,
@@ -232,10 +232,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0A38C41227D162D00DA9274 /* art.scnassets in Resources */,
 				B0A38C4B227D162F00DA9274 /* LaunchScreen.storyboard in Resources */,
 				B0A38C48227D162F00DA9274 /* Assets.xcassets in Resources */,
 				B0A38C46227D162D00DA9274 /* Main.storyboard in Resources */,
+				B0E01080228392B200C8935D /* GeometryFighter.scnassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
