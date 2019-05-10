@@ -17,18 +17,22 @@ class GameViewController: UIViewController {
     }
     
     func setupScene() {
+        
         scnView = self.view as! SCNView
         scnView.delegate = self
         
-        scnScene = SCNScene(named: "GeometryFighter.scnassets/Scene/Game.scn")
+        scnScene = SCNScene(named: "GeometryFighter.scnassets/Scene/model.scn")
         scnView.scene = scnScene
+        scnView.showsStatistics = true
+        // 2
+        
     }
     
     func setupNodes() {
         
-        verticalCameraNode = scnScene.rootNode.childNode(withName: "camera", recursively: true)!
+        verticalCameraNode = scnScene.rootNode.childNode(withName: "cameraa", recursively: true)!
         
-        //scnScene.rootNode.addChildNode(game.hudNode)
+        scnScene.rootNode.addChildNode(game.hudNode)
         ballNode = scnScene.rootNode.childNode(withName: "Ball", recursively:
             true)!
     }
@@ -38,9 +42,9 @@ class GameViewController: UIViewController {
     
     override var shouldAutorotate: Bool { return true }
     
-    override var prefersStatusBarHidden: Bool { return true }
+    override var prefersStatusBarHidden: Bool { return false }
     
-    // 1
+    
     
 }
 
