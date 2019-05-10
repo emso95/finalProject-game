@@ -15,6 +15,7 @@
 		B0A38C56227D162F00DA9274 /* voltagePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A38C55227D162F00DA9274 /* voltagePuzzleTests.swift */; };
 		B0A38C61227D162F00DA9274 /* voltagePuzzleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A38C60227D162F00DA9274 /* voltagePuzzleUITests.swift */; };
 		B0E01080228392B200C8935D /* GeometryFighter.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B0E0107F228392B200C8935D /* GeometryFighter.scnassets */; };
+		B0E0108222852B1000C8935D /* GameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E0108122852B1000C8935D /* GameHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B0A38C60227D162F00DA9274 /* voltagePuzzleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voltagePuzzleUITests.swift; sourceTree = "<group>"; };
 		B0A38C62227D162F00DA9274 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0E0107F228392B200C8935D /* GeometryFighter.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = GeometryFighter.scnassets; sourceTree = "<group>"; };
+		B0E0108122852B1000C8935D /* GameHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				B0E0107F228392B200C8935D /* GeometryFighter.scnassets */,
 				B0A38C3E227D162D00DA9274 /* AppDelegate.swift */,
+				B0E0108122852B1000C8935D /* GameHelper.swift */,
 				B0A38C42227D162D00DA9274 /* GameViewController.swift */,
 				B0A38C44227D162D00DA9274 /* Main.storyboard */,
 				B0A38C47227D162F00DA9274 /* Assets.xcassets */,
@@ -262,6 +265,7 @@
 			files = (
 				B0A38C43227D162D00DA9274 /* GameViewController.swift in Sources */,
 				B0A38C3F227D162D00DA9274 /* AppDelegate.swift in Sources */,
+				B0E0108222852B1000C8935D /* GameHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
