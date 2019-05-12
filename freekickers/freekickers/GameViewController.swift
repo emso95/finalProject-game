@@ -4,6 +4,8 @@ import SceneKit
 
 class GameViewController: UIViewController {
     var isShot=false;
+    var tmp=false;
+    var startLocation = CGPoint()
     var ballPosition: SCNVector3!
     var scnView: SCNView!
     var scnScene: SCNScene!
@@ -44,9 +46,12 @@ class GameViewController: UIViewController {
     func setupSounds() {
     }
     func resetGame(){
-        ballNode.physicsBody!.velocity = SCNVector3Zero
-        ballNode.position = ballPosition
         
+        ballNode.physicsBody?.velocity = SCNVector3Zero
+        ballNode.physicsBody?.angularVelocity = SCNVector4Zero
+        ballNode.position = ballPosition
+        isShot=false
+        tmp=false
     }
     
     override var shouldAutorotate: Bool { return true }
@@ -54,24 +59,39 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool { return false }
     
     @objc func shootBall(_ sender: UIPanGestureRecognizer){
-        var startLocation = CGPoint()
+        
+        
+        
         if(!isShot){
             if(sender.state == UIGestureRecognizer.State.began){
                 startLocation = sender.location(in: self.view)
+                
             }
             else if (sender.state == UIGestureRecognizer.State.ended) {
-                let stopLocation = sender.location(in: self.view)
-                let dx = stopLocation.x - startLocation.x;
-                let dy = stopLocation.y - startLocation.y;
-                let distance = sqrt(dx*dx + dy*dy );
-            
-            
-                let force = SCNVector3(x: 0, y: 0 , z: Float(-2*(distance)))
-            
-                let position = SCNVector3(x: 0, y: 0, z: 0)
-                ballNode.physicsBody?.applyForce(force, asImpulse: true)
+                tmp=false
+            }
+            else if (sender.state == UIGestureRecognizer.State.cancelled) {
+                tmp=false
+            }
+        }
+        if (sender.state == UIGestureRecognizer.State.changed){
+            let stopLocation = sender.location(in: self.view)
+            let dx = stopLocation.x - startLocation.x;
+            let dy = startLocation.y - stopLocation.y;
+            //let distance = sqrt(dx*dx + dy*dy );
+            print(dx)
+            if dy > 200 && tmp == false{
                 
-            
+                let force = SCNVector3(x: Float(dx), y: Float(250/3) , z: Float(-1*(150)))
+                
+                //let position = SCNVector3(x: 0, y: 0, z: 0)
+                ballNode.physicsBody?.applyForce(force, asImpulse: true)
+                isShot=true
+                tmp=true
+            }
+            if(tmp){
+                let force = SCNVector3(x: Float(dx), y: abs(Float(dx)/2) , z: Float(dx)*(-1))
+                ballNode.physicsBody?.applyForce(force, asImpulse: false)
             }
         }
     }
@@ -88,6 +108,9 @@ extension GameViewController: SCNSceneRendererDelegate {
                 print("No Goal!")
             }
            resetGame()
+        }
+        else if ballNode.presentation.position.z+50 < ballPosition.z && ballNode.physicsBody?.velocity.z == 0 {
+            resetGame()
         }
     }
 }
