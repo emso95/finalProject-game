@@ -7,14 +7,22 @@ enum ColliderType: Int {
 }
 
 class GameViewController: UIViewController {
+    
+    @IBOutlet weak var scnView: SCNView!
+    
     var isShot=false;
     var tmp=false;
     var startLocation = CGPoint()
     var ballPosition: SCNVector3!
-    var scnView: SCNView!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var chanceLabel: UILabel!
+    var chances = 5
+    var level = 1
+    //var scnView: SCNView!
     var scnScene: SCNScene!
     var panGesture = UIPanGestureRecognizer()
     var verticalCameraNode: SCNNode!
+    var additionalCameraNode: SCNNode!
     var ballNode: SCNNode!
     var boxNodes: [SCNNode] = []
     var lastContactNode: SCNNode!
@@ -24,10 +32,11 @@ class GameViewController: UIViewController {
         setupScene()
         setupNodes()
         setupSounds()
+        nextLevel(level: 1)
     }
     
     func setupScene() {
-        scnView = self.view as! SCNView
+        //scnView = self.view as! SCNView
         scnView.delegate = self
         
         scnScene = SCNScene(named: "freekickerArt.scnassets/Scene/model.scn")
@@ -37,11 +46,14 @@ class GameViewController: UIViewController {
         
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(GameViewController.shootBall(_:)))
         scnView.addGestureRecognizer(panGesture)
+        self.chanceLabel.text = String(chances)
+        self.levelLabel.text = String(level)
     }
     
     func setupNodes() {
         
         verticalCameraNode = scnScene.rootNode.childNode(withName: "cameraa", recursively: true)!
+        additionalCameraNode = scnScene.rootNode.childNode(withName: "newcamera", recursively: true)!
 
         ballNode = scnScene.rootNode.childNode(withName: "Ball", recursively:
             true)!
@@ -50,8 +62,8 @@ class GameViewController: UIViewController {
         
         var i=0
         while i<6{
-            var box = "box" + String(i+1)
-            print(box)
+            let box = "box" + String(i+1)
+            
             let boxNode = scnScene.rootNode.childNode(withName: box, recursively:
                 true)!
             boxNodes.append(boxNode)
@@ -69,7 +81,49 @@ class GameViewController: UIViewController {
         isShot=false
         tmp=false
     }
-    
+    func nextLevel(level: Int){
+        switch level{
+        case 1:
+            resetBoxes()
+        case 2:
+            resetBoxes()
+            boxNodes[0].isHidden = false
+            boxNodes[1].isHidden = false
+        case 3:
+            resetBoxes()
+            boxNodes[2].isHidden = false
+            boxNodes[3].isHidden = false
+            //ballNode.position = SCNVector3(x: 3756, y: 6, z: -1305)
+            //verticalCameraNode.position = SCNVector3(x: 3698, y: 37, z: -1193)
+            //scnView.pointOfView = additionalCameraNode
+        case 4:
+            resetBoxes()
+            boxNodes[4].isHidden = false
+            boxNodes[5].isHidden = false
+            scnView.pointOfView = verticalCameraNode
+        case 5:
+            resetBoxes()
+            boxNodes[1].isHidden = false
+            boxNodes[3].isHidden = false
+            boxNodes[5].isHidden = false
+        case 6:
+            resetBoxes()
+            boxNodes[0].isHidden = false
+            boxNodes[2].isHidden = false
+            boxNodes[4].isHidden = false
+        default:
+            print("anan")
+        }
+    }
+    func resetBoxes(){
+        var i=0
+        while i<6{
+            
+            boxNodes[i].isHidden = true
+            
+            i=i+1
+        }
+    }
     override var shouldAutorotate: Bool { return true }
     
     override var prefersStatusBarHidden: Bool { return false }
@@ -129,11 +183,19 @@ extension GameViewController: SCNSceneRendererDelegate {
         if ballNode.presentation.position.z < -2133{
             if ballNode.presentation.position.y < 95 && ballNode.presentation.position.x > 4054 && ballNode.presentation.position.x < 4300{
                 print("Goal!")
+                resetGame()
+                level = level+1
+                nextLevel(level: level)
+                
+                self.levelLabel.text = String(level)
             }
             else{
                 print("No Goal!")
+                resetGame()
+                chances = chances - 1
+                self.chanceLabel.text = String(chances)
             }
-           resetGame()
+           
         }
         else if ballNode.presentation.position.z+50 < ballPosition.z && ballNode.physicsBody?.velocity.z == 0 {
             resetGame()
@@ -163,7 +225,9 @@ extension GameViewController: SCNPhysicsContactDelegate {
         
         if contactNode.physicsBody?.categoryBitMask == ColliderType.boxes.rawValue {
             print("Hit box")
-            //resetGame()
+            chances = chances - 1
+            self.chanceLabel.text = String(chances)
+            resetGame()
             //game.playSound(node: scnScene.rootNode, name: "Barrier")
         }
         
